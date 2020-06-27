@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ldf.easy.mybatis.TestMapper">
 
-
     <select id="selectList" resultType="com.ldf.easy.mybatis.MybatisTestDO">
         SELECT * FROM user
         WHERE 1=1
@@ -10,4 +9,13 @@
             AND id = #{id}
         </if>
     </select>
+
+    <select id="selectCounty" resultType="java.util.Map">
+        SELECT * FROM town
+    </select>
+
+    <insert id="insertLog">
+        INSERT INTO log (request_id) VALUE (#{requestId})
+    </insert>
+
 </mapper>
