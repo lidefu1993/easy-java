@@ -22,6 +22,7 @@
         <module>easy-java-app</module>
         <module>easy-java-redis</module>
         <module>easy-java-test</module>
+        <module>easy-java-arithmetic</module>
     </modules>
 
     <dependencies>
