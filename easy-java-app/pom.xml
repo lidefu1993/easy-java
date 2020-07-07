@@ -11,5 +11,162 @@
 
     <artifactId>easy-java-app</artifactId>
 
+    <properties>
+        <mysql-connector-java-version>5.1.30</mysql-connector-java-version>
+        <mybatis-spring-boot-starter-version>1.2.0</mybatis-spring-boot-starter-version>
+        <pagehelper-spring-boot-starter-version>1.2.10</pagehelper-spring-boot-starter-version>
+        <swagger-version>2.9.2</swagger-version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java-version}</version>
+        </dependency>
+        <!-- Spring Boot Mybatis 依赖 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring-boot-starter-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper-spring-boot-starter-version}</version>
+        </dependency>
+
+        <!-- swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <!--  热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.10.Final</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.xiaomi.mentor.Application</mainClass>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <configuration>
+                    <configurationFile>src/main/resources/base/generatorConfig.xml</configurationFile>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql-connector-java-version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.3</version> <!-- latest 0.8.3 -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <!--开发环境-->
+        <profile>
+            <id>dev</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/dev</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources/base</directory>
+                    </resource>
+                </resources>
+            </build>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!--test环境-->
+        <profile>
+            <id>test</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/test</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources/base</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <!--prod环境-->
+        <profile>
+            <id>prod</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/pro</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources/base</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
 </project>

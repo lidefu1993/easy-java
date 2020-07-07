@@ -1,0 +1,14 @@
+<included>
+    <property name="mailTo" value="lidefu@mail.com"/>
+    <property name="mailSubject" value="系统异常"/>
+
+    <appender name="NOTICE" class="com.ldf.easy.helper.MyNoticeAppender">
+        <asynchronousSending>false</asynchronousSending>
+        <to>${mailTo}</to>
+        <subject>${mailSubject}</subject>
+        <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+</included>
