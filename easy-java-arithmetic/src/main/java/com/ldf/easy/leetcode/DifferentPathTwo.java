@@ -38,10 +38,15 @@ public class DifferentPathTwo {
         int[][] ints = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
         System.out.println(ints[1][1]);
         System.out.println(ints[0]);
-        int obstacles = two.uniquePathsWithObstacles(ints);
+        int obstacles = two.uniquePathsWithObstacles1(ints);
         System.out.println(obstacles);
     }
 
+    /**
+     * 官方题解：没看懂 ！！！
+     * @param obstacleGrid ！！
+     * @return ！！
+     */
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int n = obstacleGrid.length, m = obstacleGrid[0].length;
         int[] f = new int[m];
@@ -56,10 +61,36 @@ public class DifferentPathTwo {
                 if (j - 1 >= 0 && obstacleGrid[i][j - 1] == 0) {
                     f[j] += f[j - 1];
                 }
+                System.out.println(f);
             }
         }
 
         return f[m - 1];
+    }
+
+    /**
+     * 定义f[i][j]记录到改点的路径数，则到f[i][j] = f[i-1][j]+f[i][j-1]
+     * @param obstacleGrid -
+     * @return
+     */
+    public int uniquePathsWithObstacles1(int[][] obstacleGrid) {
+        int m = obstacleGrid.length, n = obstacleGrid[0].length;
+        int[][] f = new int[m][n];
+        //初始化第一行和第一列 当前位置==0 ？ 步数=1 ： 步数=0
+        for(int i=0; i<m && obstacleGrid[i][0]==0; i++){
+            f[i][0]=1;
+        }
+        for(int j=0; j<n && obstacleGrid[0][j]==0; j++){
+            f[0][j]=1;
+        }
+        for(int i=1; i<m; i++){
+            for(int j=1; j<n; j++){
+                if(obstacleGrid[i][j] == 0){
+                    f[i][j] = f[i][j-1] + f[i-1][j];
+                }
+            }
+        }
+        return f[m-1][n-1];
     }
 
 }
