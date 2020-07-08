@@ -1,9 +1,6 @@
 package com.ldf.easy;
 
-import com.ldf.easy.leetcode.CQueue;
-import com.ldf.easy.leetcode.KthLargestElementInArray;
-import com.ldf.easy.leetcode.LongestRepeatingSubArray;
-import com.ldf.easy.leetcode.MaximumSubsequenceSum;
+import com.ldf.easy.leetcode.*;
 
 /**
  * @author lidefu
@@ -19,7 +16,8 @@ public enum ArithmeticIndex {
     数组中的第K个最大元素(KthLargestElementInArray.class),
     用两个栈实现队列(CQueue.class),
     最长重复子数组(LongestRepeatingSubArray.class),
-
+    不同路径2(DifferentPathTwo.class),
+    跳水板(DivingBoard.class)
     ;
 
     private Class<?> c;
