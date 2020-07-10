@@ -12,9 +12,9 @@
     <artifactId>easy-java-app</artifactId>
 
     <properties>
-        <mysql-connector-java-version>5.1.30</mysql-connector-java-version>
-        <mybatis-spring-boot-starter-version>1.2.0</mybatis-spring-boot-starter-version>
-        <pagehelper-spring-boot-starter-version>1.2.10</pagehelper-spring-boot-starter-version>
+        <mysql-connector-java-version>5.1.37</mysql-connector-java-version>
+        <mybatis-spring-boot-starter-version>2.1.3</mybatis-spring-boot-starter-version>
+        <pagehelper-spring-boot-starter-version>1.2.13</pagehelper-spring-boot-starter-version>
         <swagger-version>2.9.2</swagger-version>
     </properties>
 

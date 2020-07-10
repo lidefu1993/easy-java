@@ -17,7 +17,8 @@ public enum ArithmeticIndex {
     用两个栈实现队列(CQueue.class),
     最长重复子数组(LongestRepeatingSubArray.class),
     不同路径2(DifferentPathTwo.class),
-    跳水板(DivingBoard.class)
+    跳水板(DivingBoard.class),
+    恢复空格(RestoreSpace.class),
     ;
 
     private Class<?> c;

@@ -23,6 +23,8 @@
         <module>easy-java-redis</module>
         <module>easy-java-test</module>
         <module>easy-java-arithmetic</module>
+        <module>easy-java-job</module>
+        <module>easy-java-job-admin</module>
     </modules>
 
     <dependencies>
