@@ -16,15 +16,13 @@
     </parent>
 
     <modules>
-        <module>easy-java-excel</module>
-        <module>easy-java-word</module>
-        <module>easy-java-pdf</module>
         <module>easy-java-app</module>
         <module>easy-java-redis</module>
         <module>easy-java-test</module>
         <module>easy-java-arithmetic</module>
         <module>easy-java-job</module>
         <module>easy-java-job-admin</module>
+        <module>easy-java-helper</module>
     </modules>
 
     <dependencies>
@@ -32,6 +30,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
 
