@@ -9,18 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>easy-java-job</artifactId>
+    <artifactId>easy-java-job2</artifactId>
 
-    <description>任务调度-调度器</description>
+
+    <description>任务调度-调度器2</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
         <dependency>
@@ -28,10 +25,11 @@
             <artifactId>xxl-job-core</artifactId>
             <version>2.2.0</version>
         </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.37</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<version>5.1.37</version>-->
+        <!--</dependency>-->
     </dependencies>
+
 </project>

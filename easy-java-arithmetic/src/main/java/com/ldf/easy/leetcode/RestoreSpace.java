@@ -1,8 +1,6 @@
 package com.ldf.easy.leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -31,53 +29,148 @@ public class RestoreSpace {
 
     public static void main(String[] args) {
         RestoreSpace restoreSpace = new RestoreSpace();
-        String[] dictionary = {"wccm","wiw","uwwiwcmiiiwmmwicuwu","mw"};
-        String sentence = "iwiwwwmuiccwwwwwmumwwwmcciwwuiwcicwwuwicuiwciwmiwicwuwwmuimccwucuuim";
-        int respace = restoreSpace.respace(dictionary, sentence);
+//        String[] dictionary = {"wccm","wiw","uwwiwcmiiiwmmwicuwu","mw"};
+//        String sentence = "iwiwwwmuiccwwwwwmumwwwmcciwwuiwcicwwuwicuiwciwmiwicwuwwmuimccwucuuim";
+//        int respace = restoreSpace.respace3(dictionary, sentence);
+//        System.out.println(respace);
+        String[] dictionary = {"looked","just","like","her","brother"};
+        String sentence = "jesslookedjustliketimherbrother";
+        int respace = restoreSpace.respace3(dictionary, sentence);
         System.out.println(respace);
     }
 
     /**
-     * 没做出来！！！
+     * 字典树
      * @param dictionary -
      * @param sentence -
      * @return -
      */
     public int respace(String[] dictionary, String sentence) {
-        StringBuilder r = new StringBuilder();
-        StringBuilder temp = new StringBuilder();
-        char[] chars = sentence.toCharArray();
-        for(int i =0; i<chars.length; i++){
-            temp.append(chars[i]);
-            int match = match(dictionary, temp.toString());
-            if(match == 2){
-                //继续
+        int n = sentence.length();
 
-            }else if(match == 1){
-                //匹配上
-                temp = new StringBuilder();
-            }else {
-                r.append(temp.substring(0, temp.length()-1));
-                temp = new StringBuilder();
-                if(i>0) i--;
-            }
-
+        Trie root = new Trie();
+        for (String word: dictionary) {
+            root.insert(word);
         }
-        return r.length();
+
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for (int i = 1; i <= n; ++i) {
+            dp[i] = dp[i - 1] + 1;
+
+            Trie curPos = root;
+            for (int j = i; j >= 1; --j) {
+                int t = sentence.charAt(j - 1) - 'a';
+                if (curPos.next[t] == null) {
+                    break;
+                } else if (curPos.next[t].isEnd) {
+                    dp[i] = Math.min(dp[i], dp[j - 1]);
+                }
+                if (dp[i] == 0) {
+                    break;
+                }
+                curPos = curPos.next[t];
+            }
+        }
+        return dp[n];
     }
 
-    private int match(String[] dictionary, String c){
-        List<String> list = Arrays.stream(dictionary).filter(d -> d.startsWith(c)).collect(Collectors.toList());
-        if(list.size() == 0){
-            return 0;
-        }else {
-            for(String item : list){
-                if(item.equals(c)){
-                    return 1;
+    class Trie {
+        public Trie[] next;
+        public boolean isEnd;
+
+        public Trie() {
+            next = new Trie[26];
+            isEnd = false;
+        }
+
+        public void insert(String s) {
+            Trie curPos = this;
+
+            for (int i = s.length() - 1; i >= 0; --i) {
+                int t = s.charAt(i) - 'a';
+                if (curPos.next[t] == null) {
+                    curPos.next[t] = new Trie();
+                }
+                curPos = curPos.next[t];
+            }
+            curPos.isEnd = true;
+        }
+    }
+
+
+    static final long P = Integer.MAX_VALUE;
+    static final long BASE = 41;
+
+    public int respace2(String[] dictionary, String sentence) {
+        Set<Long> hashValues = new HashSet<Long>();
+        for (String word : dictionary) {
+            hashValues.add(getHash(word));
+        }
+
+        int[] f = new int[sentence.length() + 1];
+        Arrays.fill(f, sentence.length());
+
+        f[0] = 0;
+        for (int i = 1; i <= sentence.length(); ++i) {
+            f[i] = f[i - 1] + 1;
+            long hashValue = 0;
+            for (int j = i; j >= 1; --j) {
+                int t = sentence.charAt(j - 1) - 'a' + 1;
+                hashValue = (hashValue * BASE + t) % P;
+                if (hashValues.contains(hashValue)) {
+                    f[i] = Math.min(f[i], f[j - 1]);
                 }
             }
         }
-        return 2;
+
+        return f[sentence.length()];
     }
+
+    public long getHash(String s) {
+        long hashValue = 0;
+        for (int i = s.length() - 1; i >= 0; --i) {
+            hashValue = (hashValue * BASE + s.charAt(i) - 'a' + 1) % P;
+        }
+        return hashValue;
+    }
+
+
+    public int respace3(String[] dictionary, String sentence) {
+        if(sentence==null||sentence.length()==0)
+            return 0;
+        int n=sentence.length();
+        if(dictionary==null||dictionary.length==0)
+            return n;
+        int[] dp=new int[n+1];
+        for(int i=1;i<=n;i++){
+            dp[i]=dp[i-1]+1;
+            for(String word:dictionary){
+                int wlen=word.length();
+                if(i-wlen>=0&&sentence.substring(i-wlen,i).equals(word)){
+                    dp[i]=Math.min(dp[i-wlen],dp[i]);
+                }
+            }
+        }
+        return dp[n];
+    }
+
+    public int respace4(String[] dictionary, String sentence) {
+        int m = sentence.length();
+        int[] dp = new int[m+1];
+        for(int i=1;i<=m;i++){                 //外层循环字符串
+            for(String word:dictionary){             //内层循环字典
+                int len = word.length();
+                if(i >= len && word.equals(sentence.substring(i-len,i))){
+                    dp[i] = Math.max(dp[i],dp[i-len]+len);  //状态转移
+                }else{
+                    dp[i] = Math.max(dp[i],dp[i-1]);
+                }
+            }
+        }
+        return m-dp[m];
+    }
+
 
 }

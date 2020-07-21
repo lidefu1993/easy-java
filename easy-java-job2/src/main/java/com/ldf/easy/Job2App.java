@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Bean;
  * @date 2020年07月10日14:26
  **/
 @SpringBootApplication
-public class JobApp {
+public class Job2App {
 
     public static void main(String[] args) {
-        SpringApplication.run(JobApp.class, args);
+        SpringApplication.run(Job2App.class, args);
     }
 
     @Value("${xxl.job.admin.addresses}")
@@ -40,9 +40,6 @@ public class JobApp {
     @Value("${xxl.job.executor.logretentiondays}")
     private Integer logRetentionDays;
 
-    /**
-     * 调度中心配置
-     */
     @Bean
     public XxlJobSpringExecutor xxlJobExecutor() {
         XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
@@ -56,21 +53,15 @@ public class JobApp {
         return xxlJobSpringExecutor;
     }
 
-    /**
-     * 任务逻辑
-     * @param param 传入参数
-     * @return -
-     * @throws InterruptedException-
-     */
     @XxlJob("demoJobHandler")
     public ReturnT<String> execute(String param) throws InterruptedException {
-        System.out.println("-----------------job1 begin----------------");
+        System.out.println("-----------------job2 begin----------------");
         System.out.println("param:" + param);
         for(int i = 0; i<3; i++){
             System.out.println("hello world. com.ldf.easy.Job2App : " + i);
             Thread.sleep(1000);
         }
-        System.out.println("-----------------job1 end----------------");
+        System.out.println("-----------------job2 end----------------");
         return ReturnT.SUCCESS;
     }
 

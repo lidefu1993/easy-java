@@ -9,7 +9,7 @@ import com.ldf.easy.leetcode.*;
 public enum ArithmeticIndex {
 
     /**
-     * Y 比较容易 N 需要反复笑话
+     * Y 比较容易 N 需要反复消化
      *
      * 动态规划！！！！！
      *

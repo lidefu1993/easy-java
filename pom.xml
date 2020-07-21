@@ -23,6 +23,7 @@
         <module>easy-java-job</module>
         <module>easy-java-job-admin</module>
         <module>easy-java-helper</module>
+        <module>easy-java-job2</module>
     </modules>
 
     <dependencies>
