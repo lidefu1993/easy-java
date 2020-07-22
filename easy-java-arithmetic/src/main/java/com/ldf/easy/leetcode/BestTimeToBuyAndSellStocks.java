@@ -29,23 +29,31 @@ public class BestTimeToBuyAndSellStocks {
         System.out.println(sellStocks.maxProfit(new int[]{1,2,3,0, 2}));
     }
 
+    /**
+     * 动态规划
+     *
+
+     我们目前持有一支股票，对应的「累计最大收益」记为 f[i][0]；
+     我们目前不持有任何股票，并且处于冷冻期中，对应的「累计最大收益」记为 f[i][1]；
+     我们目前不持有任何股票，并且不处于冷冻期中，对应的「累计最大收益」记为 f[i][2]。
+
+     * @param prices -
+     * @return
+     */
     public int maxProfit(int[] prices) {
         if(prices.length <= 1){
             return 0;
         }
-        int r = 0;
-        //true 买入
-        boolean b = true;
-        for(int i=0; i<prices.length; i++){
-            if(b){
-                r-=prices[i];
-            }else {
-                r+=prices[i];
-                i+=1;
-            }
-            b=!b ;
+        int[][] dp = new int[prices.length][3];
+        dp[0][0] = -prices[0];
+        for(int i=1; i<prices.length; i++){
+            dp[i][0] = Math.max(dp[i-1][0], dp[i-1][2]-prices[i]);
+            dp[i][1] = dp[i-1][0]+prices[i];
+            dp[i][2] = Math.max(dp[i-1][2], dp[i-1][1]);
         }
-        return r;
+        int n = prices.length-1;
+        int max = Math.max(dp[n][0], dp[n][1]);
+        return Math.max(max, dp[n][2]);
     }
 
 }
