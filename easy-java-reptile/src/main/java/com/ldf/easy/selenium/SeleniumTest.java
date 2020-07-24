@@ -18,7 +18,7 @@ public class SeleniumTest {
         WebDriver driver = new FirefoxDriver();
 
         // 使用它访问 Google
-        driver.get("http://www.google.com");
+        driver.get("https://gkcx.eol.cn/school/459/provinceline");
         // 同样的事情也可以通过以下代码完成
         // driver.navigate().to("http://www.google.com");
 

@@ -22,7 +22,7 @@ public class Util {
         request.setAdditionalHeader("Cache-Control", "max-age=0");
         request.setAdditionalHeader("Connection", "keep-alive");
         request.setAdditionalHeader("Cookie", cookies);
-        request.setAdditionalHeader("Host", "weibo.com");
+        request.setAdditionalHeader("Host", "gkcx.eol.cn");
         request.setAdditionalHeader("Upgrade-Insecure-Requests", "1");
         request.setAdditionalHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36");
         return request;
