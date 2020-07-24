@@ -24,6 +24,7 @@
         <module>easy-java-job-admin</module>
         <module>easy-java-helper</module>
         <module>easy-java-job2</module>
+        <module>easy-java-reptile</module>
     </modules>
 
     <dependencies>
