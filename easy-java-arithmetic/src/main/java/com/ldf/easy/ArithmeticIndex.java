@@ -24,7 +24,7 @@ public enum ArithmeticIndex {
     跳水板(DivingBoard.class, 'Y'),
     恢复空格(RestoreSpace.class, 'N'),
     最佳买卖股票时机含冷冻期(BestTimeToBuyAndSellStocks.class, 'N'),
-
+    判断子序列(JudgmentSubsequence.class, 'Y'),
     ;
 
     private Class<?> c;
