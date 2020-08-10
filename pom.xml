@@ -25,7 +25,6 @@
         <module>easy-java-helper</module>
         <module>easy-java-job2</module>
         <module>easy-java-reptile</module>
-        <module>freemarker</module>
     </modules>
 
     <dependencies>
