@@ -1,6 +1,5 @@
-package com.ldf.easy.service;
+package com.ldf.easy.jackson;
 
-import com.ldf.easy.domain.vo.TestVO;
 
 /**
  * @author lidefu

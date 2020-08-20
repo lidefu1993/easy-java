@@ -1,4 +1,4 @@
-package com.ldf.easy.domain.vo;
+package com.ldf.easy.jackson;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jdk.nashorn.internal.ir.annotations.Ignore;

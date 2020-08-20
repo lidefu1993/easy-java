@@ -1,7 +1,5 @@
-package com.ldf.easy.service.impl;
+package com.ldf.easy.jackson;
 
-import com.ldf.easy.domain.vo.TestVO;
-import com.ldf.easy.service.TestService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,7 +9,7 @@ import java.util.Date;
  * @date 2020年08月10日11:31
  **/
 @Service
-public class TestServiceVO implements TestService {
+public class TestServiceImpl implements TestService {
 
     @Override
     public TestVO test() {

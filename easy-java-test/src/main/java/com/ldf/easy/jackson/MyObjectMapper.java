@@ -1,4 +1,4 @@
-package com.ldf.easy.helper;
+package com.ldf.easy.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 @Primary
 public class MyObjectMapper extends ObjectMapper {
-
 
 
 }

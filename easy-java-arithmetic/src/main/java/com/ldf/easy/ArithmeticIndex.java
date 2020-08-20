@@ -25,6 +25,7 @@ public enum ArithmeticIndex {
     恢复空格(RestoreSpace.class, 'N'),
     最佳买卖股票时机含冷冻期(BestTimeToBuyAndSellStocks.class, 'N'),
     判断子序列(JudgmentSubsequence.class, 'Y'),
+    平衡二叉树(BalancedBinaryTree.class, 'N')
     ;
 
     private Class<?> c;
